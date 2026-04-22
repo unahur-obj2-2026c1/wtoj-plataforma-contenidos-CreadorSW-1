@@ -16,13 +16,25 @@ import java.util.List;
 // Constructor
 public class Temporada extends Contenido {
 
+    private Integer numero;
     private List<Episodio> episodios = new ArrayList<>();
 
-    public Temporada(String titulo, Double costoBase) {
+    // Si invocamos al constructor del padre, necesitamos que tenga todos los parámetros.
+    public Temporada(String titulo, Double costoBase, Integer numero) {
         super(titulo, costoBase);
+        this.numero = numero;
     }
 
     public void agregarEpisodio(Episodio episodio) {
         this.episodios.add(episodio);
+    }
+
+    public Integer cantidadEpisodios() {
+        return this.episodios.size();
+    }
+
+    @Override
+    public Double getCosto() {
+        return this.episodios.stream().mapToDouble(Episodio::getCosto).sum();
     }
 }

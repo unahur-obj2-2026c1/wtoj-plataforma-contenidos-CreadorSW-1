@@ -19,8 +19,4 @@ public abstract class Plan {
     public void agregarContenido(Contenido contenido) {
         contenidoVisto.add(contenido);
     }
-
-    public List<Contenido> getContenidoVisto() {
-        return contenidoVisto;
-    }
 }

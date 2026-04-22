@@ -15,4 +15,23 @@ public class Serie extends Contenido {
     public void agregarTemporada(Temporada temporada) {
         this.temporadas.add(temporada);
     }
+
+    // method cantidadEpisodiosTotales()
+    public Integer cantidadEpisodiosTotales() {
+        return temporadas.stream().mapToInt(Temporada::cantidadEpisodios).sum();
+    }
+
+    // override method costo()
+    @Override
+    public Double getCosto() {
+        Double sumaCostoTemporadas = temporadas
+            .stream()
+            .mapToDouble(Temporada::getCosto)
+            .sum();
+
+        return (
+            this.costoBase +
+            (sumaCostoTemporadas / this.cantidadEpisodiosTotales())
+        );
+    }
 }

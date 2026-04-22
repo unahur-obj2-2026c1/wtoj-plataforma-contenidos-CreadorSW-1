@@ -9,12 +9,7 @@ public class Episodio extends Contenido {
     private Integer numero;
 
     // Constructor
-    public Episodio(
-        String titulo,
-        Double costoBase,
-        Integer numero,
-        Double costo
-    ) {
+    public Episodio(String titulo, Double costoBase, Integer numero) {
         // Llama al constructor de la clase padre (Contenido)
         super(titulo, costoBase);
         // Inicializa los atributos propios de la clase Episodio
@@ -27,6 +22,6 @@ public class Episodio extends Contenido {
 
     @Override
     public Double getCosto() {
-        return super.getCosto();
+        return this.costoBase;
     }
 }
