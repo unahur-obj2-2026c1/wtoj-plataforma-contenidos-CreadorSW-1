@@ -14,6 +14,13 @@ public class PlanBasico extends Plan {
 
     @Override
     public Double getCosto() {
+        /* Si vio menos de lo que tiene bonificado, no paga extras. Tenemos que hacer esto porque si por ejemplo, tiene bonificado 15 y ve 7, el código hace `subList(15, 7)`. En Java, si el número de inicio (15) es mayor que el tamaño de la lista (7), **el programa tira un error** (`IndexOutOfBoundsException`). Wollok es más "bueno" y con contenidoVisto.drop(cantidadDeContenidoBonificado) devuelve una lista vacía.
+
+        */
+        if (this.contenidoVisto.size() <= cantidadDeContenidoBonificado) {
+            return this.costoFijo;
+        }
+
         List<Contenido> contenidoFacturado = this.contenidoVisto.subList(
             cantidadDeContenidoBonificado,
             this.contenidoVisto.size()
