@@ -24,6 +24,13 @@ public class Serie extends Contenido {
     // override method costo()
     @Override
     public Double getCosto() {
+        int totalEpisodios = this.cantidadEpisodiosTotales();
+
+        // Si no hay episodios, el promedio no existe, cobramos solo el base. ATENCIÓN: con esta forma nos permitimos poner 2 returns....(Cláusula de guardia)
+        if (totalEpisodios == 0) {
+            return this.costoBase;
+        }
+
         Double sumaCostoTemporadas = temporadas
             .stream()
             .mapToDouble(Temporada::getCosto)
